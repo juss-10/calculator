@@ -1,0 +1,114 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+}
+
+body {
+    font-family: "Roboto", sans-serif;
+}
+
+main {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.calculator {
+    display: grid;
+    grid-template-columns: repeat(4, 75px);
+    grid-template-rows: 125px repeat(5, 75px);
+    gap: 10px;
+    padding: 2em;
+    background-color: hsl(0, 0%, 90%);
+    border-radius: 20px;
+    border: 2px solid hsl(0, 0%, 78%);
+    border-bottom-width: 10px;
+}
+
+.btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1em;
+    cursor: pointer;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: hsl(0, 0%, 50%);
+    background-color: hsl(0, 0%, 95%);
+    border: 1px solid hsl(0, 0%, 75%);
+    border-bottom-width: 4px;
+    border-radius: 20px;
+}
+
+.btn-green {
+    color:hsl(0, 0%, 100%);
+    background-color: hsl(75, 45%, 50%);
+    border-color: hsl(75, 45%, 45%);
+}
+
+.btn-orange {
+    color: hsl(0, 0%, 100%);
+    background-color: hsl(20, 92%, 50%);
+    border-color: hsl(20, 76%, 42%);
+}
+
+.btn:hover {
+    background-color: hsl(0, 0%, 98%);
+}
+
+.btn-green:hover {
+    background-color: hsl(75, 60%, 55%);
+}
+
+.btn-orange:hover {
+    background-color: hsl(20, 100%, 55%);
+}
+
+.btn:active,
+.btn-green:active,
+.btn-orange:active {
+    border-bottom-width: 2px;
+}
+
+.calculator-screen {
+    grid-column: span 4;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+    margin-bottom: 20px;
+    padding: 1em;
+    font-family: "Roboto Mono", monospace;
+    font-size: 1.5rem;
+    color: hsl(78, 5%, 60%);
+    background-color: hsl(80, 55%, 95%);
+    border: 1px solid hsl(0, 0%, 85%);
+    border-radius: 10px;
+    box-shadow: inset 0 0 2px 1px hsla(0, 0%, 0%, 0.3);
+}
+
+.calculator-small-output {
+    font-size: 1rem;
+}
+
+.calculator-large-output {
+    font-size: 2rem;
+}
+
+.span-two-columns {
+    grid-column: span 2;
+}
+
+.span-two-rows {
+    grid-row: span 2;
+}
