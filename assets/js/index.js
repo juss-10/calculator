@@ -20,6 +20,7 @@ inputButtons.forEach(inputButton => inputButton.addEventListener("click", inputH
 operatorButtons.forEach(operatorButton => operatorButton.addEventListener("click", operatorHandler))
 numberButtons.forEach(numberButton => numberButton.addEventListener("click", numberHandler))
 equalsButton.addEventListener("click", showResult)
+clearButton.addEventListener("click", resetCalculator)
 
 function inputHandler() {
     setInput.call(this)
@@ -111,6 +112,18 @@ function updateCalculator(...args) {
 
 function clearInputs() {
     inputs.length = 0;
+}
+
+function resetCalculator() {
+    clearInputs()
+    lastInput = "";
+    isLastInputNumber = "";
+    isExpression = false;
+    hasOperator = false;
+    result = "";
+    hasResult = false;
+    previousOutput.textContent = "";
+    currentOutput.textContent = "...";
 }
 
 function operate(...args) {
