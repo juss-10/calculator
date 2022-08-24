@@ -81,6 +81,10 @@ function showInput() {
 }
 
 function showResult() {
+    if (inputs.length !== 3) {
+        return;
+    }
+
     previousOutput.textContent = `${getExpression()} =`;
     currentOutput.textContent = result;
     hasResult = true;
