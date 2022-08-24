@@ -34,6 +34,7 @@ function inputHandler() {
 function operatorHandler() {
     if (hasResult) {
         continueCalc()
+
     } else if (isExpression) {
         setResult()
         continueCalc()
@@ -95,6 +96,8 @@ function continueCalc() {
     clearInputs()
     inputs.push(result, input)
     currentOutput.textContent = getExpression();
+    result = "";
+    hasResult = false;
 }
 
 function clearInputs() {
