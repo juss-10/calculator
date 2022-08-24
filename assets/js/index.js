@@ -7,6 +7,7 @@ const equalsButton = document.querySelector("[data-equals]");
 const numberButtons = document.querySelectorAll("[data-number]");
 const operatorButtons = document.querySelectorAll("[data-operator]");
 const inputButtons = [...numberButtons, ...operatorButtons];
+const disabledButtons = [...inputButtons, deleteButton, decimalButton, equalsButton];
 const inputs = [];
 let input;
 let lastInput;
@@ -15,6 +16,7 @@ let isExpression;
 let hasOperator;
 let result;
 let hasResult = false;
+let isDisabled = false;
 
 inputButtons.forEach(inputButton => inputButton.addEventListener("click", inputHandler))
 operatorButtons.forEach(operatorButton => operatorButton.addEventListener("click", operatorHandler))
@@ -62,7 +64,6 @@ function setInput() {
         inputs.push(input)
     } else if (!isLastInputNumber && !hasOperator) {
         inputs.push("0", input)
-        console.log('here we go')
     } else if (!isLastInputNumber && !isInputNumber) {
         inputs[lastInput] = input;
     }
@@ -92,13 +93,14 @@ function showInput() {
 }
 
 function showResult() {
-    if (inputs.length !== 3) {
-        return;
+    if (result === null) {
+        showError()
+        disableCalculator()
+    } else {
+        previousOutput.textContent = `${getExpression()} =`;
+        currentOutput.textContent = result;
+        hasResult = true;
     }
-
-    previousOutput.textContent = `${getExpression()} =`;
-    currentOutput.textContent = result;
-    hasResult = true;
 }
 
 function updateCalculator(...args) {
@@ -124,6 +126,19 @@ function resetCalculator() {
     hasResult = false;
     previousOutput.textContent = "";
     currentOutput.textContent = "...";
+}
+
+function showError() {
+    previousOutput.textContent = "Cannot divide by 0";
+    currentOutput.textContent = "Error";
+}
+
+function disableCalculator() {
+    isDisabled = true;
+    disabledButtons.forEach(disabledButton => {
+        disabledButton.disabled = true;
+        disabledButton.classList.add("disabled")
+    })
 }
 
 function operate(...args) {

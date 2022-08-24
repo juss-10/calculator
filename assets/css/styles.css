@@ -112,3 +112,13 @@ main {
 .span-two-rows {
     grid-row: span 2;
 }
+
+.disabled,
+.disabled:hover,
+.disabled:active {
+    color: hsl(0, 0%, 75%);
+    background-color: hsl(0, 0%, 90%);
+    border-width: 1px;
+    border-color: hsl(0, 0%, 75%);
+    cursor: default;
+}
