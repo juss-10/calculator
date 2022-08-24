@@ -23,6 +23,7 @@ operatorButtons.forEach(operatorButton => operatorButton.addEventListener("click
 numberButtons.forEach(numberButton => numberButton.addEventListener("click", numberHandler))
 equalsButton.addEventListener("click", showResult)
 clearButton.addEventListener("click", clearHandler)
+deleteButton.addEventListener("click", deleteHandler)
 
 function inputHandler() {
     setInput.call(this)
@@ -57,6 +58,17 @@ function clearHandler() {
         resetCalculator()
     } else {
         resetCalculator()
+    }
+}
+
+function deleteHandler() {
+    if (!hasResult && inputs.length === 1) {
+        clearInputs()
+        inputs.push("0")
+        showInput()
+    } else if (!hasResult) {
+        inputs.pop()
+        showInput()
     }
 }
 
@@ -98,6 +110,7 @@ function getExpression() {
 }
 
 function showInput() {
+    console.log(inputs)
     currentOutput.textContent = getExpression();
 }
 
