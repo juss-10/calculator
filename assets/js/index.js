@@ -34,22 +34,17 @@ function inputHandler() {
 
 function operatorHandler() {
     if (hasResult) {
-        continueCalc()
+        updateCalculator(result, input)
 
     } else if (isExpression) {
         setResult()
-        continueCalc()
+        updateCalculator(result, input)
     }
 }
 
 function numberHandler() {
     if (hasResult) {
-        previousOutput.textContent = `${getExpression()} = ${result}`;
-        result = "";
-        hasResult = false;
-        clearInputs()
-        inputs.push(input)
-        currentOutput.textContent = getExpression();
+        updateCalculator(input)
     }
 }
 
@@ -102,11 +97,11 @@ function showResult() {
     hasResult = true;
 }
 
-function continueCalc() {
+function updateCalculator(...args) {
     previousOutput.textContent = `${getExpression()} = ${result}`;
     clearInputs()
-    inputs.push(result, input)
-    currentOutput.textContent = getExpression();
+    inputs.push(...args)
+    currentOutput.textContent = `${getExpression()}`;
     result = "";
     hasResult = false;
 }
