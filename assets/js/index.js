@@ -18,6 +18,7 @@ let hasResult = false;
 
 inputButtons.forEach(inputButton => inputButton.addEventListener("click", inputHandler))
 operatorButtons.forEach(operatorButton => operatorButton.addEventListener("click", operatorHandler))
+numberButtons.forEach(numberButton => numberButton.addEventListener("click", numberHandler))
 equalsButton.addEventListener("click", showResult)
 
 function inputHandler() {
@@ -41,13 +42,23 @@ function operatorHandler() {
     }
 }
 
+function numberHandler() {
+    if (hasResult) {
+        previousOutput.textContent = `${getExpression()} = ${result}`;
+        result = "";
+        hasResult = false;
+        clearInputs()
+        inputs.push(input)
+        currentOutput.textContent = getExpression();
+    }
+}
 
 function setInput() {
     input = this.textContent;
     const isInputNumber = !isNaN( Number(input) );
     checkInput()
 
-    if (isLastInputNumber && isInputNumber) {
+    if (isLastInputNumber && isInputNumber && !hasResult) {
         inputs[lastInput] += input;
     } else if (!isExpression && (isLastInputNumber && !isInputNumber || isInputNumber)) {
         inputs.push(input)
