@@ -96,7 +96,7 @@ function showResult() {
     if (result === null) {
         showError()
         disableCalculator()
-    } else {
+    } else if (isExpression) {
         previousOutput.textContent = `${getExpression()} =`;
         currentOutput.textContent = result;
         hasResult = true;
@@ -110,6 +110,7 @@ function updateCalculator(...args) {
     currentOutput.textContent = `${getExpression()}`;
     result = "";
     hasResult = false;
+    isExpression = false;
 }
 
 function clearInputs() {
