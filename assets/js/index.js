@@ -2,6 +2,7 @@ const previousOutput = document.querySelector("[data-previous-output]");
 const currentOutput = document.querySelector("[data-current-output]");
 const clearButton = document.querySelector("[data-clear]");
 const deleteButton = document.querySelector("[data-delete]");
+const decimalButton = document.querySelector("[data-decimal]")
 const equalsButton = document.querySelector("[data-equals]");
 const numberButtons = document.querySelectorAll("[data-number]");
 const operatorButtons = document.querySelectorAll("[data-operator]");
