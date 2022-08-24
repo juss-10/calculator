@@ -53,12 +53,15 @@ function setInput() {
     const isInputNumber = !isNaN( Number(input) );
     checkInput()
 
-    if (isLastInputNumber && isInputNumber && !hasResult) {
+    if (isLastInputNumber && inputs[lastInput] === "0" && isInputNumber) {
+        inputs[lastInput] = input;
+    } else if (isLastInputNumber && isInputNumber && !hasResult) {
         inputs[lastInput] += input;
     } else if (!isExpression && (isLastInputNumber && !isInputNumber || isInputNumber)) {
         inputs.push(input)
     } else if (!isLastInputNumber && !hasOperator) {
         inputs.push("0", input)
+        console.log('here we go')
     } else if (!isLastInputNumber && !isInputNumber) {
         inputs[lastInput] = input;
     }
