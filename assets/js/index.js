@@ -22,7 +22,7 @@ inputButtons.forEach(inputButton => inputButton.addEventListener("click", inputH
 operatorButtons.forEach(operatorButton => operatorButton.addEventListener("click", operatorHandler))
 numberButtons.forEach(numberButton => numberButton.addEventListener("click", numberHandler))
 equalsButton.addEventListener("click", showResult)
-clearButton.addEventListener("click", resetCalculator)
+clearButton.addEventListener("click", clearHandler)
 
 function inputHandler() {
     setInput.call(this)
@@ -48,6 +48,15 @@ function operatorHandler() {
 function numberHandler() {
     if (hasResult) {
         updateCalculator(input)
+    }
+}
+
+function clearHandler() {
+    if (isDisabled) {
+        enableCalculator()
+        resetCalculator()
+    } else {
+        resetCalculator()
     }
 }
 
@@ -139,6 +148,15 @@ function disableCalculator() {
     disabledButtons.forEach(disabledButton => {
         disabledButton.disabled = true;
         disabledButton.classList.add("disabled")
+    })
+}
+
+function enableCalculator() {
+    isDisabled = false;
+
+    disabledButtons.forEach(disabledButton => {
+        disabledButton.disabled = false;
+        disabledButton.classList.remove("disabled")
     })
 }
 
