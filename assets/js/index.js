@@ -14,8 +14,10 @@ let isLastInputNumber;
 let isExpression;
 let hasOperator;
 let result;
+let hasResult = false;
 
 inputButtons.forEach(inputButton => inputButton.addEventListener("click", inputHandler))
+operatorButtons.forEach(operatorButton => operatorButton.addEventListener("click", operatorHandler))
 equalsButton.addEventListener("click", showResult)
 
 function inputHandler() {
@@ -28,6 +30,16 @@ function inputHandler() {
 
     showInput()
 }
+
+function operatorHandler() {
+    if (hasResult) {
+        continueCalc()
+    } else if (isExpression) {
+        setResult()
+        continueCalc()
+    }
+}
+
 
 function setInput() {
     input = this.textContent;
@@ -71,6 +83,18 @@ function showInput() {
 function showResult() {
     previousOutput.textContent = `${getExpression()} =`;
     currentOutput.textContent = result;
+    hasResult = true;
+}
+
+function continueCalc() {
+    previousOutput.textContent = `${getExpression()} = ${result}`;
+    clearInputs()
+    inputs.push(result, input)
+    currentOutput.textContent = getExpression();
+}
+
+function clearInputs() {
+    inputs.length = 0;
 }
 
 function operate(...args) {
