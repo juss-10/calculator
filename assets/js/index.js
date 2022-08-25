@@ -30,11 +30,6 @@ deleteButton.addEventListener("click", () => {
 function inputHandler() {
     setInput.call(this)
     checkInput()
-
-    if (isExpression) {
-        setResult()
-    }
-
     showInput()
 }
 
@@ -122,6 +117,10 @@ function showInput() {
 }
 
 function showResult() {
+    if (isExpression) {
+        setResult()
+    }
+
     if (result === null) {
         showError()
         disableCalculator()
