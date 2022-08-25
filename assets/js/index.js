@@ -137,7 +137,7 @@ function setResult() {
     result = operate(...inputs);
 
     if (result !== null) {
-        result = result.toString();
+        result = (Math.round((result + Number.EPSILON) * 100) / 100).toString();
     }
 }
 
