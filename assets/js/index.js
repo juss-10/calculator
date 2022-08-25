@@ -7,6 +7,7 @@ const equalsButton = document.querySelector("[data-equals]");
 const numberButtons = document.querySelectorAll("[data-number]");
 const operatorButtons = document.querySelectorAll("[data-operator]");
 const inputButtons = [...numberButtons, ...operatorButtons];
+const operationButtons = [equalsButton, ...operatorButtons];
 const disabledButtons = [...inputButtons, deleteButton, decimalButton, equalsButton];
 const inputs = [];
 let input;
@@ -18,6 +19,13 @@ let result;
 let hasResult = false;
 let isDisabled = false;
 
+decimalButton.addEventListener("click", () => {
+    if (!hasResult) {
+        checkInput()
+        appendDecimal()
+    }
+})
+operationButtons.forEach(operationButton => operationButton.addEventListener("click", removeDecimal))
 inputButtons.forEach(inputButton => inputButton.addEventListener("click", inputHandler))
 operatorButtons.forEach(operatorButton => operatorButton.addEventListener("click", operatorHandler))
 numberButtons.forEach(numberButton => numberButton.addEventListener("click", numberHandler))
@@ -91,6 +99,31 @@ function setInput() {
     } else if (!isLastInputNumber && !isInputNumber) {
         inputs[lastInput] = input;
     }
+}
+
+function appendDecimal() {
+    const hasInput = typeof inputs[lastInput] !== "undefined";
+    const string = inputs[lastInput];
+    const hasDecimal = (string) ? string.includes(".") : null;
+    
+    if (!hasInput || hasOperator) {
+        inputs.push("0.");
+    } else if (isLastInputNumber && !hasDecimal) {
+        inputs[lastInput] += ".";
+    }
+
+    showInput()
+    checkInput()
+}
+
+function removeDecimal() {
+    inputs.forEach((number, index) => {
+        if (number.endsWith(".")) {
+            inputs[index] = number.slice(0, -1);
+        }
+    })
+
+    showInput()
 }
 
 function checkInput() {
