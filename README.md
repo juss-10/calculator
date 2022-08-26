@@ -22,4 +22,4 @@ Project inspiration comes from the [Odin Project](https://www.theodinproject.com
 ## License
 
 * [MIT License](https://github.com/juss-10/calculator/blob/main/LICENSE)
-* Copyright &copy; 2020 [juss-10](https://github.com/juss-10)
+* Copyright &copy; 2022 [juss-10](https://github.com/juss-10)
